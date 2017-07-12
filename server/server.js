@@ -7,6 +7,7 @@ const publicPath = path.join(__dirname, '../public');
 const port = process.env.PORT || 3000;
 var app = express();
 var server = http.createServer(app);
+// web sockets server
 var io = socketIO(server);
 
 // console.log(__dirname + '/../public');
@@ -14,6 +15,7 @@ var io = socketIO(server);
 
 app.use(express.static(publicPath));
 
+// event listener, listen for a new connection
 io.on('connection', (socket) => {
     console.log('New user connected');
 
