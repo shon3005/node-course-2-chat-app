@@ -20,7 +20,17 @@ function scrollToBottom() {
 
 // upon connection to localhost, prints connected to user on client
 socket.on('connect', function() {
-    console.log('Connected to server');
+    var params = jQuery.deparam(window.location.search);
+
+    socket.emit('join', params, function(err) {
+        if (err) {
+            alert(err);
+            window.location.href = '/';
+        } else {
+            console.log("no error");
+        }
+    });
+    // console.log('Connected to server');
 
     // socket.emit('createEmail', {
     //     to: 'shon3005@gmail.com',
